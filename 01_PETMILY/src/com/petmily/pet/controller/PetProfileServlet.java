@@ -46,7 +46,6 @@ public class PetProfileServlet extends HttpServlet {
 //		}
 //		else {
 			String id = request.getParameter("userId");
-			id = "sebin";
 			System.out.println("회원정보수정 화면으로 이동하기 위해 확인하는 id 값 : "+id);
 //			
 ////			DB에서 id와 동일한 정보를 가져온다

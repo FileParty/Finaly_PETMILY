@@ -74,6 +74,9 @@
 		margin-right:auto;
 		margin-left:auto;
 	}
+	#checkid-container{
+		margin-top:200px;
+	}
 </style>
 <!-- ------------------------------------------------------------- -->
 

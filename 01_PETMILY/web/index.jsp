@@ -3,6 +3,9 @@
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" type = "text/css">
 <style>
+body,section{
+ margin: 0 auto;
+}
 	div#mainText{
 		width:1366px;
 		height:700px;

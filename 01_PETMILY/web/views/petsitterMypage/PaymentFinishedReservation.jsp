@@ -2,6 +2,11 @@
 pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp" %>
+<%@page import="java.util.List,com.petmily.petsitterMyPage.reservation.model.vo.PetsitterMypageReservation" %>
+<%
+	
+	int count=1;
+%>
 
 <style>
    *{   
@@ -174,7 +179,7 @@ pageEncoding="UTF-8"%>
 			                        <th class="state">상태</th>
 			                        <th>채팅</th>
 			                    </tr>
-			                    <%if(list!=null){ %>
+			                    <%-- <%if(list!=null){ %>
 			                    <%for(PetsitterMypageReservation pmr:list){ %>
 			                    <tr>
 			                    	<td class="no"><%=count++ %></td>
@@ -188,7 +193,7 @@ pageEncoding="UTF-8"%>
 			                    	<td class="state"><%=pmr.getResType() %></td>
 			                    	<td><div class="p-1"><button type="button" class="btn">채팅</button></div></td>
 			                    </tr>
-			                 	<%} }%>
+			                 	<%} }%> --%>
 			                </table>
 		                	
 		                	

@@ -5,6 +5,7 @@
 <%@ page import="java.util.List, com.petmily.calculator.model.vo.Calculator" %>
 
 <%
+int month = Integer.parseInt(request.getParameter("month"));
 	int count = 1;
 	List<Calculator> list = (List)request.getAttribute("list");
 	int total=0;
@@ -237,7 +238,7 @@
 						<p>* 매달 1일부터 말일까지 결제 완료된 금액에 대해서 정산을 진행합니다. * 건당 수수료 10%가 (주)펫 밀리로 지급됩니다.</p>
 						<p>* 정산된 금액은 회원정보에 등록된 계좌로 입금됩니다.</p>
                     </div>     
-               		<select id="month" name="month" onchange="end();">
+               		<select name="month">
 						<option>날짜를 선택해주세요.</option>
 						<option value="01">01</option>
 						<option value="02">02</option>
@@ -252,13 +253,6 @@
 						<option value="11">11</option>
 						<option value="12">12</option>	
 					</select>
-				
-					<script>
-					function end(){
-						
-						location.replace('<%=request.getContextPath()%>/sitter/calculatorEnd?month='+event.target.value);
-					}
-					</script>
                         <table>
                         <tr class="tr-blank">
                         <th>No</th>
@@ -317,7 +311,6 @@
         
         </div>
     </section>
-   
     
     <br><br><br><br>
 

@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.petmily.petsitterReview.model.vo.PetSitterReview;
 import com.petmily.petsitterReview.service.PetSitterReviewService;
+import com.petmily.user.model.vo.User;
 import com.petmily.userReview.model.vo.UserReview;
 import com.petmily.userReview.service.UserReviewService;
 
@@ -35,8 +37,8 @@ public class PetSitterReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String id = request.getParameter("userId");
-		id = "petsitter1";
+		HttpSession session = request.getSession();
+	    String id = ((User)session.getAttribute("loginUser")).getUserId();
 		List<PetSitterReview> list=new PetSitterReviewService().selectPetSitterReviewList(id);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/sitter/sitterReview.jsp").forward(request, response);

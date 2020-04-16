@@ -52,6 +52,8 @@ public class ReservationDao {
 				pr.setResType(rs.getString("RTYPE"));
 				pr.setPrice(rs.getInt("PRICE"));
 				pr.setBoardNo(rs.getInt("PCODE"));
+				pr.setPriceEndDate(rs.getString("PRICE_END_DATE"));
+				
 				list.add(pr);
 			}
 			System.out.println("dao"+list);

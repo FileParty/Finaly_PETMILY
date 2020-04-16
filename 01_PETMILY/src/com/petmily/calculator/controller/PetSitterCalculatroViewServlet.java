@@ -14,19 +14,17 @@ import com.petmily.calculator.model.vo.Calculator;
 import com.petmily.calculator.service.CalculatorService;
 import com.petmily.user.model.vo.User;
 
-
-
 /**
- * Servlet implementation class PetSitterCalculatorServlet
+ * Servlet implementation class PetSitterCalculatroViewServlet
  */
-@WebServlet("/sitter/calculator")
-public class PetSitterCalculatorServlet extends HttpServlet {
+@WebServlet("/sitter/calculatorEnd")
+public class PetSitterCalculatroViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PetSitterCalculatorServlet() {
+    public PetSitterCalculatroViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,9 +34,11 @@ public class PetSitterCalculatorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int month = Integer.parseInt(request.getParameter("month"));
+		System.out.println("선택 값"+month);
 		HttpSession session = request.getSession();
 	    String userId = ((User)session.getAttribute("loginUser")).getUserId();
-		List<Calculator> list=new CalculatorService().selectCalculator(userId);
+		List<Calculator> list=new CalculatorService().selectCalculatorMonth(userId,month);
 		System.out.println("로그인"+userId);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/sitter/sitterCalculator.jsp").forward(request, response);

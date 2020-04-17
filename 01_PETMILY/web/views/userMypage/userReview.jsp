@@ -44,13 +44,13 @@ pageEncoding="UTF-8"%>
     .menu{
             width: 230px;
             /* border: 1px solid yellow; */
-            margin-top: 150px;
+            margin-top: 50px;
             height: 100%;
             
         }
     #menu{
         width: 230px;
-        position : fixed;
+        /* position : fixed; */
         height: 100%;
     }
     ul{
@@ -116,22 +116,22 @@ pageEncoding="UTF-8"%>
 
     <section>
         <div class="container">
-            <form action="<%=request.getContextPath()%>/sitter/write?userId=sebin" method="post" onsubmit="return test();" enctype="multipart/form-data">
+            <form action="<%=request.getContextPath()%>" method="post" onsubmit="return test();" enctype="multipart/form-data">
             <div class="row">
             <div class="col-2 menu">
                     <div id="menu">
                         <ul type="none">
                             <li class="title">회원정보</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 회원정보 수정</a></li>
-                            <li class="content"><a href=""> - 회원 탈퇴</a></li>
-                            <li class="content"><a href=""> - 북마크</a></li>
-                            <li class="content"><a href=""> - 작성 후기</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Update?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Delete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/BookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Review?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
                             <br/>
         
                             <li class="title">펫 프로필</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 펫 프로필</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/petprofile?userId=<%=loginUser.getUserId()%>"> - 펫 프로필</a></li>
                             <br/>
                             
                             <li class="title">예약</li>
@@ -158,7 +158,7 @@ pageEncoding="UTF-8"%>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">회원 정보</li>
-                    <li class="breadcrumb-item active">회원 탈퇴</li>
+                    <li class="breadcrumb-item active">작성 후기</li>
                 </ul>
                    <!-- 콘텐츠 영역 -->
                    <table id="enrollTB">
@@ -173,14 +173,15 @@ pageEncoding="UTF-8"%>
                         <th>작성 후기</th>
                     </tr>
                    <%for(UserReview ur:list){ %>
-                   	<tr>
+                   	<tr style="font-size: 12px;">
                    		<td><%=count++ %></td>
                    		<td class="starR on"><%for(int i=0;i<ur.getReviewStar();i++){%><i class="far fa-star"></i><%}%></td>
                    		<td><%=ur.getReviewText() %></td>
                    		<td><%=ur.getPetsitterName() %></td>
                    		<td><%=ur.getCheckIn() %></td>
                    		<td><%=ur.getCheckOut() %></td>
-                   		<td><a href="">작성글 보기</a></td>
+                   		<td><a href="javascript:void(0);" 
+                   		onclick="location.replace('<%=request.getContextPath()%>/user/reviewDetail?userId=<%=loginUser.getUserId()%>&PetsitterId=<%=ur.getPetsitterId()%>')" style="color: gray;" >작성글 보기</a></td>
                    	</tr>
                    <%} %>
 						
@@ -192,6 +193,9 @@ pageEncoding="UTF-8"%>
         </form>
         </div>
     </section>
+    
+    <br><br><br><br><br>
+    
 <style>
 	.no{
 		width:40px;
@@ -210,7 +214,7 @@ pageEncoding="UTF-8"%>
 </style>
 
 <script>
-
+	
 </script>
 
 

@@ -6,7 +6,7 @@
 		pageType = Integer.parseInt((String)request.getAttribute("pageType"));
 	}
 %>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminSideBar.css" type = "text/css">
 <aside id="sideBar">
 		<div id="sideBar1" class="side">
 			<h2>일반 회원</h2>
@@ -46,7 +46,11 @@
 		<div id="sideBar4" class="side">
 			<h2>고객 문의</h2>
 			<hr/>
-			<a href="#">- 고객 문의</a>
+			<% if(pageType==8){ %>
+				<a href="<%=request.getContextPath()%>/admin/question">▷   고객 문의</a>
+			<% } else { %>
+				<a href="<%=request.getContextPath()%>/admin/question">-  고객 문의</a>
+			<% } %>
 		</div>
 		<div id="sideBar5" class="side">
 			<h2>추가 요금</h2>

@@ -16,7 +16,7 @@ import com.petmily.user.model.vo.UserBookMark;
 import com.petmily.user.model.vo.UserBookMarkBoard;
 
 
-@WebServlet("/userBookMarkList")
+@WebServlet("/user/BookMarkList")
 public class UserBookMarkListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

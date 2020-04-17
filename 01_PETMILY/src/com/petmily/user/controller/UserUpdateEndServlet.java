@@ -11,7 +11,7 @@ import com.petmily.user.model.service.UserService;
 import com.petmily.user.model.vo.User;
 
 
-@WebServlet("/userUpdateEnd")
+@WebServlet("/user/UpdateEnd")
 public class UserUpdateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,12 +52,12 @@ public class UserUpdateEndServlet extends HttpServlet {
 		if(result>0) {
 			msg = "회원정보가 수정되었습니다";
 			// 일반 사용자 마이페이지 - 대시보드 화면으로 전환하는 기능을 가진 서블릿으로 이동하는 매핑값
-			loc = "/userInfo?userId="+id; 
+			loc = "/common/Info?userId="+id; 
 		}
 		else {
 			msg = "회원정보 수정이 실패되었습니다. 다시 진행해주세요.";
 			// 일반 사용자 마이페이지 - 회원정보 - 회원정보 수정 화면으로 전환하는 기능을 가진 서블릿으로 이동하는 매핑값
-			loc = "/userUpdate?userId="+id; 
+			loc = "/user/Update?userId="+id; 
 		}
 		
 		request.setAttribute("msg", msg);

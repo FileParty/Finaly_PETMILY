@@ -4,7 +4,7 @@
 
 
 <!-- 내가 적용한 CSS : 회원가입 완료 -->	
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/joinEndForm.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/yskCss/joinEndForm.css">
 
 <section>
 	

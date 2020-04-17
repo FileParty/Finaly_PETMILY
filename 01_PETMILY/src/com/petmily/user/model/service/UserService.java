@@ -79,9 +79,9 @@ public class UserService {
 	}
 	
 //	회원가입 로직
-	public int userJoin(User u) {
+	public int userJoin(String id, String password, String name, String bday, String phone, String post, String address, String detailedAddress, String email, String gender) {
 		Connection conn = getConnection();
-		int result = dao.userJoin(conn, u);
+		int result = dao.userJoin(conn, id, password, name, bday, phone, post, address, detailedAddress, email, gender);
 		close(conn);
 		return result;
 	}
@@ -144,6 +144,14 @@ public class UserService {
 		int count = dao.selectBoardCount(conn, id);
 		close(conn);
 		return count;
+	}
+
+	// API 이메일을 받아서 로그인
+	public User apiLogin(String userEmail) {
+		Connection conn = getConnection();
+		User user = dao.userApiLogin(conn, userEmail);
+		close(conn);
+		return user;
 	}
 	
 	

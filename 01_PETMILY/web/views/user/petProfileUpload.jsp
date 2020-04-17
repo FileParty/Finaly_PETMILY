@@ -21,8 +21,9 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <title>Document</title>
+    <title>펫 프로필 등록</title>
 </head>
+<%@ include file="/views/common/header.jsp" %>
 <style>
    *{   
        
@@ -244,7 +245,6 @@ label.custom-file-label::after{
 
 
 </style>
-<body>
     <section>
         <div class="container">
             <div class="row">
@@ -254,10 +254,10 @@ label.custom-file-label::after{
                         <ul type="none">
                             <li class="title">회원정보</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 회원정보 수정</a></li>
-                            <li class="content"><a href=""> - 회원 탈퇴</a></li>
-                            <li class="content"><a href=""> - 북마크</a></li>
-                            <li class="content"><a href=""> - 작성 후기</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Update?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Delete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/BookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Review?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
                             <br/>
                             
                             <li class="title">펫 프로필</li>
@@ -597,7 +597,7 @@ label.custom-file-label::after{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
@@ -697,13 +697,6 @@ $('.row4').slideToggle(100); //시간 부여
 	    }
 		/* window.close(); */
 	}).open();
-		
-	
-		
 	}
-    
-    
-
-
 </script>
-</html>
+<%@ include file="/views/common/footer.jsp" %>

@@ -1,6 +1,8 @@
 package com.petmily.pet.controller;
 
+import java.io.File;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,6 +69,7 @@ public class PetProfileEditServlet extends HttpServlet {
 		String petUrineTxt="";
 		String petIndoorTxt="";
 		String petHowlingTxt = "";
+		String detail = "";
 		
 		try {
 			petDiseaseTxt = mr.getParameter("illexplanation");
@@ -74,12 +77,14 @@ public class PetProfileEditServlet extends HttpServlet {
 			petUrineTxt = mr.getParameter("mexplanation");
 			petIndoorTxt = mr.getParameter("mmexplanation");
 			petHowlingTxt = mr.getParameter("bexplanation");
+			detail = mr.getParameter("detail");
 		}catch(NullPointerException e) {
 			petDiseaseTxt="";
 			petSeparationTxt="";
 			petUrineTxt="";
 			petIndoorTxt="";
 			petHowlingTxt = "";
+			detail = "";
 		}
 		
 		String petSeparation = mr.getParameter("anxiety");
@@ -90,6 +95,7 @@ public class PetProfileEditServlet extends HttpServlet {
 		
 		String petHowling = mr.getParameter("bark");
 		
+		File f=mr.getFile("upload");
 		
 		String heartDisease = mr.getParameter("drug");
 		String vaccine = mr.getParameter("inoculation");
@@ -99,8 +105,8 @@ public class PetProfileEditServlet extends HttpServlet {
 		String hospitalPhone = mr.getParameter("hnum");
 		String hospitalZip = mr.getParameter("postNum");
 		String hospitalAddress = mr.getParameter("address");
-		String detail = mr.getParameter("detail");
-		String petImg = mr.getFilesystemName("upload");
+//		String detail = mr.getParameter("detail");
+		String petImg = f==null?mr.getParameter("ori"):mr.getFilesystemName("upload");
 		String registration = mr.getParameter("enroll");
 		
 		
@@ -114,7 +120,7 @@ public class PetProfileEditServlet extends HttpServlet {
 		
 		Pet pet = new Pet();
 			
-			
+				
 				pet.setCorona(corona);
 				pet.setDetail(detail);
 				pet.setHeartDisease(heartDisease);
@@ -126,7 +132,7 @@ public class PetProfileEditServlet extends HttpServlet {
 				pet.setPetAffinity(petAffinity);
 				pet.setPetAge(petAge);
 				pet.setPetCode(no);
-				pet.setPetDisease(petDiseaseTxt);
+				pet.setPetDisease(petDisease);
 				pet.setPetDiseaseTxt(petDiseaseTxt);
 				pet.setPetGender(petGender);
 				pet.setPetHowling(petHowling);

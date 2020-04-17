@@ -223,7 +223,6 @@ public class BoardDao {
 			
 			while(rs.next()) {
 				ReviewPetSitter review = new ReviewPetSitter();
-				review.setUserName(rs.getString("USER_NAME"));
 				review.setUserReviewNo(rs.getInt("USER_REVIEW_NO"));
 				review.setUserId(rs.getString("USER_ID"));
 				review.setReservationCode(rs.getInt("RESERVATION_CODE"));

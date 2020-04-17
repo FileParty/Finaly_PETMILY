@@ -36,6 +36,8 @@ public class PetProfileDetailServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		String id = request.getParameter("userId");
 		id = "sebin";
+		
+		
 		Pet p = new PetService().petProfileDetail(id,no);
 		request.setAttribute("p", p);
 		request.getRequestDispatcher("/views/user/petProfileDetail.jsp").forward(request, response);

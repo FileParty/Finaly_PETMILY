@@ -8,11 +8,12 @@ public class PetSitterCertificate {
 	private String dateOfAcquisition;
 	private String expirationDate;
 	private String certificateFilename;
+	private String resType;
 	public PetSitterCertificate() {
 		// TODO Auto-generated constructor stub
 	}
 	public PetSitterCertificate(String petSitterId, String certificateName, String certificationNmae,
-			String dateOfAcquisition, String expirationDate, String certificateFilename) {
+			String dateOfAcquisition, String expirationDate, String certificateFilename, String resType) {
 		super();
 		this.petSitterId = petSitterId;
 		this.certificateName = certificateName;
@@ -20,6 +21,7 @@ public class PetSitterCertificate {
 		this.dateOfAcquisition = dateOfAcquisition;
 		this.expirationDate = expirationDate;
 		this.certificateFilename = certificateFilename;
+		this.resType = resType;
 	}
 	public String getPetSitterId() {
 		return petSitterId;
@@ -57,11 +59,19 @@ public class PetSitterCertificate {
 	public void setCertificateFilename(String certificateFilename) {
 		this.certificateFilename = certificateFilename;
 	}
+	public String getResType() {
+		return resType;
+	}
+	public void setResType(String resType) {
+		this.resType = resType;
+	}
 	@Override
 	public String toString() {
 		return "PetSitterCertificate [petSitterId=" + petSitterId + ", certificateName=" + certificateName
 				+ ", certificationNmae=" + certificationNmae + ", dateOfAcquisition=" + dateOfAcquisition
-				+ ", expirationDate=" + expirationDate + ", certificateFilename=" + certificateFilename + "]";
+				+ ", expirationDate=" + expirationDate + ", certificateFilename=" + certificateFilename + ", resType="
+				+ resType + "]";
 	}
+	
 	
 }

@@ -13,7 +13,7 @@ import com.petmily.user.model.service.UserService;
 import com.petmily.user.model.vo.User;
 
 
-@WebServlet("/userDelete")
+@WebServlet("/user/Delete")
 public class UserDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

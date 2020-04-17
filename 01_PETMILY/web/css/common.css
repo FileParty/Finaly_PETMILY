@@ -11,7 +11,7 @@ div#headerMargin{
 }
 div#headerMenuBar {
     position: fixed;
-    width:1366px;
+    width:100%;
     height:70px;
     background-color:#000000;
     z-index:1000;

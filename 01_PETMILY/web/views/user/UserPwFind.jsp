@@ -3,7 +3,7 @@
     
     
     <!-- 내가 적용한 CSS : 아이디,비밀번호 찾기 -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/pwFindForm.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/yskCss/pwFindForm.css">
 	<!-- 내가 적용한 폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   

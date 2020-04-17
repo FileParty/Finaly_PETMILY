@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.petmily.admin.model.vo.AdminUser" %>
 <%@ include file="/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminSideBar.css" type = "text/css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminUserList.css" type = "text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminUserList.css" type = "text/css">
 <% 
 	ArrayList<AdminUser> list = new ArrayList();
 	if(request.getAttribute("userList")!=null){
@@ -47,7 +46,7 @@
 					width="20px" height="20px"></p>
 		</div>
 		<div class="adminUserInfo">
-			<table>
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>No</th>

@@ -35,6 +35,8 @@ public class BookmarkChange extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String sitterId = request.getParameter("sitterId");
 		
+		
+		
 		if(bFlag) {
 			new BoardService().bookmarkDelete(userId, sitterId);
 			response.getWriter().write("t");

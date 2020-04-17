@@ -12,7 +12,7 @@
 		opacity:0.7;
 	}
 </style>
-<section>
+<section">
 	<div id="mainText">
 		<p>PET:MILY</p>
 		<p>펫 밀리가 당신의 빈자리를 잠시 채워드릴게요.</p>
@@ -38,33 +38,6 @@
 			<p>실시간 채팅으로 빠르게 예약을 진행하고,<br/>강아지의 상태를 확인 할 수 있습니다.</p>
 		</div>
 	</div>
-</section>
-<section id="review">
-		<div id="reviewImg">
-			<img alt="reviewImg" src="<%=request.getContextPath()%>/img/common/reviewTest.jpg"
-				width="562px" height="564px">
-		</div>
-		<div id="BestReview">
-			<h3>BEST 후 기</h3>
-			<div id="bReview1">
-				<img alt="유저" src="<%=request.getContextPath()%>/img/common/Profile.png"
-	        						width="50px" height="50px">
-	        	<p>사용자 김인술님의 후기</p>
-			</div>
-			<div id="bReview2">
-				<p>연락도 빨리 받아주시고 우리 복실이도 좋아하더라구요 감사합니다!</p>
-			</div>
-			<div id="arrow">
-				<img alt="" src="<%=request.getContextPath()%>/img/common/arrow1.jpg" width="70px" height="50px">
-				<img alt="" src="<%=request.getContextPath()%>/img/common/arrow2.jpg" width="70px" height="50px">
-			</div>
-		</div>
-		<div id="nextReview"
-			style="background-image:url('<%=request.getContextPath()%>/img/common/nextReviewBg.png')">
-			<img alt="" src="<%=request.getContextPath()%>/img/common/arrow3.png" 
-			width="70px" height="60px">
-			<p>다른 후기 보러가기</p>
-		</div>
 </section>
 <section id="Questions">
 	<h2>자주하는 질문</h2>
@@ -109,21 +82,21 @@
 				$(e.target).attr("alt",2);
 				let que2 = $(e.target).parent().next();
 				console.log(que2);
-				que2.slideDown(500);
+				que2.slideDown(600);
 			} else {
 				$(e.target).attr("src","<%=request.getContextPath()%>/img/common/arrowDown.png");
 				$(e.target).attr("alt",1);
 				let que2 = $(e.target).parent().next();
 				console.log(que2);
-				que2.slideUp(500);
+				que2.slideUp(600);
 			}
 		})
 		let scrollE = document.addEventListener('scroll', function(){
 			var scrollTop = window.scrollY || document.documentElement.scrollTop;
-			if(scrollTop>178){
+			if(scrollTop>190){
 				let imgs = $(".mainImgs");
 				$.each(imgs,function(i,d){
-					$(d).slideDown(500);
+					$(d).slideDown(900);
 					
 				})
 			}

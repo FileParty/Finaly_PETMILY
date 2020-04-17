@@ -3,17 +3,17 @@ package com.petmily.user.model.vo;
 import java.util.Date;
 
 public class User {
-	private String userId;
-	private String password;
-	private String userName;
-	private String userBirth;
-	private String phone;
-	private String zipCode;
-	private String address;
-	private String detailAddress;
-	private String email;
-	private String gender;
-	private String status;
+	private String userId; //user_id
+	private String password; //password
+	private String userName; // user_name
+	private String userBirth; // user_birth_day
+	private String phone; // phone
+	private String zipCode; // zip_code
+	private String address; // address
+	private String detailAddress; // detailed_address
+	private String email; // email
+	private String gender; // gender
+	private String status; 
 	private String userType;
 	private String bellRes;
 	private String bellChatt;

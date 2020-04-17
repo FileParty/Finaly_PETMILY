@@ -258,6 +258,7 @@ public PetSitterBoard boardDetail(Connection conn,String userId) {
       
      while(rs.next()) {
         pb = new PetSitterBoard();
+        pb.setBoardAddressContent(rs.getString("BOARD_ADDRESS_COMMENT"));
          pb.setBoardNo(rs.getInt("BOARD_CODE"));
          pb.setUserId(rs.getString("USER_ID"));
           pb.setBoardTitle(rs.getString("BOARD_TITLE"));

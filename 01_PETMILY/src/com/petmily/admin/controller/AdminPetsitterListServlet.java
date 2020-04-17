@@ -47,7 +47,7 @@ public class AdminPetsitterListServlet extends HttpServlet {
 		ArrayList<AdminPetsitter> list = new AdminService().petsitterList(cPage,numPerPage,type);
 		System.out.println(type);
 		int totalDate = new AdminService().petsitterCount();
-		String url = request.getContextPath() + "/admin/petsitterList?type="+(type.equals("BCOUNT DESC")?"BCOUNT%20DESC":type);
+		String url = request.getContextPath() + "/admin/petsitterList?type="+type;
 		String pageBar = getPageBar(url,totalDate,cPage,numPerPage);
 		
 		

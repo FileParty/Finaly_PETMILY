@@ -6,9 +6,11 @@
      PetSitterBoard pb = (PetSitterBoard)request.getAttribute("board");
      String plus ="";
      String basic ="";
+     if(pb.getPlus()!=null) {
        for(int i=0;i<pb.getPlus().size();i++) {
           plus+=pb.getPlus().get(i);
        }
+     }
        for(int i=0;i<pb.getServiceTypes().size();i++) {
           basic+=pb.getServiceTypes().get(i);
        }
@@ -36,43 +38,7 @@
         <div class="container">
 
             <div class="row">
-            <div class="col-2 menu">
-                    <div id="menu">
-                        <ul type="none">
-                            <li class="title">회원정보</li>
-                            <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 회원정보 수정</a></li>
-                            <li class="content"><a href=""> - 회원 탈퇴</a></li>
-                            <br/>
-        
-                            <li class="title">작성글</li>
-                            <hr class="hr-line"/>
-                            <li class="content"><a href="<%=request.getContextPath()%>/boardDetail"> - 작성글 보기</a></li>
-                            <li class="content"><a href=""> - 작성한 비밀후기 보기</a></li>
-                            <br/>
-                            
-                            <li class="title">예약</li>
-                            <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 예약 현황</a></li>
-                            <li class="content"><a href=""> - 요청중인 예약</a></li>
-                            <li class="content"><a href=""> - 진행중인 예약</a></li>
-                            <li class="content"><a href=""> - 완료된 예약</a></li>
-                            <li class="content"><a href=""> - 채팅</a></li>
-                            <br/>
-                            
-                            <li class="title">정산</li>
-                            <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 이번 달 정산 현황</a></li>
-                            <li class="content"><a href=""> - 이번 정산 보기</a></li>
-                            <br/>
-                            
-                            <li class="title">자격증</li>
-                            <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 보유 자격증 목록</a></li>
-                            <li class="content"><a href=""> - 자격증 추가</a></li>
-                        </ul>
-                    </div>
-                </div>
+            	<%@ include file="/views/petsitterMypage/petSitterSideBar.jsp" %>
             <div class="vl"></div>
             <div class="col-9" style="padding:0;">
                 <div class="row top-div" style="height: 200px;overflow: hidden;">
@@ -254,7 +220,13 @@
                         </tr>
                         <tr>
                             <td class="sub-title">추가 코멘트</td>
-                            <td><input type="text" name="comment" style="width: 600px" placeholder=" &nbsp;&nbsp;예 ) 혜화역 도보 10분내에 있습니다 / 건대 입구 cgv에서 10분 거리입니다." readonly></td>
+                            <td>
+                            <%if(pb.getBoardAddressContent()!=null) {%>
+                            <input type="text" name="comment" style="width: 600px" placeholder=" &nbsp;&nbsp;예 ) 혜화역 도보 10분내에 있습니다 / 건대 입구 cgv에서 10분 거리입니다."  value="<%=pb.getBoardAddressContent() %>" readonly>
+                            <%}else { %>
+                            <input type="text" name="comment" style="width: 600px" placeholder=" &nbsp;&nbsp;예 ) 혜화역 도보 10분내에 있습니다 / 건대 입구 cgv에서 10분 거리입니다."  value="-" readonly>
+                            <%} %>
+                            </td>
                         </tr>
                      </table><!-- 펫 시터님 위치 -->
 

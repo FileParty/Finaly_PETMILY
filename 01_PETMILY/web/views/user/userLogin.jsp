@@ -2,15 +2,49 @@
     pageEncoding="EUC-KR"%>
     
 <%@ page import="com.petmily.user.model.vo.User"%>
-    
-
+<!-- 카카오 로그인 API 셋팅 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!-- 구글 로그인 API 셋팅 -->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="306171897820-rnu74sp5127hhcvfqqdd3qu06sc2n5d3.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/api:client.js"></script>
 <%@ include file="/views/common/header.jsp" %>
 
-	<!-- 내가 적용한 CSS : 로그인 -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/loginForm.css">
-	<!-- 내가 적용한 Jquery 파일 -->
-	<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script> 
+<!-- 내가 적용한 CSS : 로그인 -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/yskCss/loginForm.css">
+<!-- 내가 적용한 Jquery 파일 -->
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script> 
+<script>
+//구글 로그인
+var googleUser = {};
+$(function(){
+  gapi.load('auth2', function(){
+	 console.log("123");
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id: '306171897820-rnu74sp5127hhcvfqqdd3qu06sc2n5d3.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+      // Request scopes in addition to 'profile' and 'email'
+      // scope: 'additional_scope'
+    });
+    console.log(document.getElementById('google'));
+    attachSignin(document.getElementById('google'));
+  });
+});
 
+function attachSignin(element) {
+  console.log(element.id);
+  auth2.attachClickHandler(element, {},
+	    	function(googleUser){
+			var profile = googleUser.getBasicProfile();
+			location.replace('<%=request.getContextPath()%>/APIlogin.do?userEmail='+profile.getEmail());
+			var auth2 = gapi.auth2.getAuthInstance();
+		    auth2.signOut().then(function () {console.log("로그아웃성공")});
+		},function(error) {
+	          alert(JSON.stringify(error, undefined, 2));
+	      });
+}
+</script>
 <section>
 
 	<!-- 로그인 타이틀 -->
@@ -65,17 +99,60 @@
 
      <!-- 두번째 article : sns 로그인(API 필요) -->
      <!-- 현재 API를 어떻게 해야 할지 몰라서 form 태그 대신, div로만 설정해뒀음! -->
+     <!-- 페이스북 로그인은 전용 로그인 버튼을 사용해야만 함 -->
      <article id="second-article">
-         <div id="facebook" class="SNS_BG" onclick="location.replace('....')">페이스북으로 로그인 </div>
-         <div id="naver" class="SNS_BG" onclick="location.replace('....')">네이버로 로그인(구현중)</div>
-         <div id="google" class="SNS_BG" onclick="location.replace('....')">구글로 로그인(API 유료전환으로 구현 어려움)</div>
-         <!-- DB에 insert 구현 필요. -->
+         <div id="gSignInWrapper">
+         	<div id="google" class="customGPlusSignIn SNS_BG">구글로 로그인</div>
+         </div>
+         <div id="kakao" class="SNS_BG kakao" onclick="kakaoLogin()">카카오톡으로 로그인</div>
      </article>
 
 </section>
 
 
 <script>
+	
+
+	// 카카오톡 로그인
+	 Kakao.init('21457534dfe681cc96c51d32694dc5a9');
+        // 카카오 로그인 버튼을 생성합니다.
+        function kakaoLogin(){
+        	
+	        Kakao.Auth.loginForm({
+	            success: function (res) {
+	            	Kakao.API.request({
+	                    url: '/v2/user/me',
+	                    success: function(res) {
+	                     console.log(res);
+	                     var userID = res.id;      //유저의 카카오톡 고유 id
+	                     var userEmail = res.kakao_account.email;   //유저의 이메일
+	                     var userNickName = res.properties.nickname; //유저가 등록한 별명
+	                     /* document.getElementById("profileID").value=userID;
+	                     document.getElementById("profileEMAIL").value=userEmail;
+	                     document.getElementById("profileNICKNAME").value=userNickName;
+	                     document.getElementById("profileGENDER").value=gender;
+	                     $("#profileImg").attr('src',userImg);  */
+	                     console.log(userID);
+	                     console.log(userEmail);
+	                     console.log(userNickName);
+	                     alert("로그인 성공");
+	                     Kakao.Auth.logout();
+	                     location.replace('<%=request.getContextPath()%>/APIlogin.do?userEmail='+userEmail);
+	                    },
+	                    fail: function(error) {
+	                     alert(JSON.stringify(error));
+	                    }
+	                   });
+	            	
+	            },
+	            fail: function (err) {
+	                alert(JSON.stringify(err));
+	            }
+	        });
+        }
+        
+        
+
 	// 아이디를 입력하세요. 비밀번호를 입력하세요. 멘트
 	function log_in() { 
 		var userId = $("#userId").val();
@@ -97,13 +174,6 @@
 		return true;
 		
 	}
-	
-	//-----------------------------------------------------------------------
-	
-	// 여기에 뭐 하려고 했더라...
-	
-	//-----------------------------------------------------------------------
-	
 
 	
 	// 아이디찾기, 비밀번호찾기 로직(팝업창)
@@ -119,7 +189,11 @@
 		var status = "height=420px, width=600px, top=200px, left=500px";
 		window.open(url, "_blank", status);
 	}
+	
+	
+	
 </script>
+
 
 
 

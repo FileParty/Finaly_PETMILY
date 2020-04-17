@@ -1,0 +1,92 @@
+@charset "UTF-8";
+section#adminUserList{
+	display:flex;
+	flex-direction:column;
+	width:1116px;
+	height:920px;
+	background-size:100%;
+}
+section#adminUserList>h4{
+	margin:10px;
+}
+section#adminUserList>hr{
+	margin:5px;
+	padding:3px;
+	border-top:1px solid black;
+}
+div#adminUserListSearchType{
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-end;
+	align-items:center;
+	padding-right:70px;
+	font-size:15px;
+}
+
+p#type-date{
+	margin-right:45px;
+}
+p#type-point{
+	margin-right:45px;
+}
+
+p#type-date:hover, p#type-point:hover, p#type-name:hover{
+	cursor:pointer;
+}
+
+div.adminUserInfo{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	text-align:center;
+	width:1106px;
+	padding-left:20px;
+	padding-right:30px;
+	font-size:13px;
+}
+
+div.adminUserInfo th{
+	border-right:1px solid white;
+	height:45px;
+	font-size:15px;
+}
+
+div.adminUserInfo th:nth-of-type(1){
+	width:35px;
+}
+div.adminUserInfo th:nth-of-type(2){
+	width:70px;
+}
+div.adminUserInfo th:nth-of-type(3){
+	width:90px;
+}
+div.adminUserInfo th:nth-of-type(4){
+	width:120px;
+}
+div.adminUserInfo th:nth-of-type(5){
+	width:140px;
+}
+div.adminUserInfo th:nth-of-type(6){
+	width:150px;
+}
+div.adminUserInfo th:nth-of-type(7){
+	width:200px;
+}
+
+div.adminUserInfo tbody>tr{
+	border-bottom:1px solid black;
+	height:45px;
+}
+
+button.userInfo{
+	width:150px;
+	height:30px;
+	background-color:white;
+	border:1px solid black;
+	border-radius:24px;
+}
+
+div#pageBar{
+	font-size:20px;
+	text-decoration:none;
+}

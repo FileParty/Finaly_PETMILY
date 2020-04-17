@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.petmily.board.model.vo.PetSitterBoard;
 import com.petmily.board.service.BoardService2;
+import com.petmily.user.model.vo.User;
 
 /**
  * Servlet implementation class SitterUpdateServlet
@@ -30,11 +32,11 @@ public class SitterDetailServlet extends HttpServlet {
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String userId="petsitter4";
+	   
+	  HttpSession session = request.getSession();
+      String userId = ((User)session.getAttribute("loginUser")).getUserId();
       
-      System.out.println("서블릿 들어옴");
       PetSitterBoard pb = new BoardService2().boardDetail(userId);
-      System.out.println("서블릿 : "  +pb);
      
            
       request.setAttribute("board", pb);

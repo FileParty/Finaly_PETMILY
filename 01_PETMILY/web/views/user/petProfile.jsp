@@ -8,13 +8,6 @@
 %>
 
 <%@ include file="/views/common/header.jsp" %>
-    
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -29,7 +22,7 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <title>Document</title>
+    <title>펫 프로필</title>
 </head>
 <style>
    *{   
@@ -64,12 +57,12 @@
     .menu{
             width: 230px;
             /* border: 1px solid yellow; */
-            margin-top: 150px;
+            margin-top: 50px;
 
         }
     #menu{
         width: 230px;
-        position : fixed;
+        /* position : fixed; */
     }
     ul{
         padding-inline-start:0;
@@ -221,6 +214,7 @@ color: #ffcc33;
 button:hover{
     color: white;
     background-color: #ffcc33;
+    cursor: pointer;
 }
 label.custom-file-label::after{
     height: 28px;
@@ -278,7 +272,7 @@ label.custom-file-label::after{
             justify-content: center;
         }
 </style>
-<body>
+
     <section>
         <div class="container">
             <div class="row">
@@ -288,15 +282,15 @@ label.custom-file-label::after{
                         <ul type="none">
                             <li class="title">회원정보</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 회원정보 수정</a></li>
-                            <li class="content"><a href=""> - 회원 탈퇴</a></li>
-                            <li class="content"><a href=""> - 북마크</a></li>
-                            <li class="content"><a href=""> - 작성 후기</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Update?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Delete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/BookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Review?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
                             <br/>
                             
                             <li class="title">펫 프로필</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href=""> - 펫 프로필</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/petprofile?userId=<%=loginUser.getUserId()%>"> - 펫 프로필</a></li>
                             <br/>
                             
                             <li class="title">예약</li>
@@ -432,5 +426,6 @@ $('.row4').slideToggle(100); //시간 부여
 
 
 </script>
-</html>
+
+
 

@@ -13,7 +13,7 @@ import com.petmily.user.model.service.UserService;
 import com.petmily.user.model.vo.User;
 
 
-@WebServlet("/userInfo")
+@WebServlet("/common/Info")
 public class UserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,8 +50,8 @@ public class UserInfoServlet extends HttpServlet {
 			// 분기처리 추가
 			switch(u.getUserType()) {
 				case "일반" : request.getRequestDispatcher("/views/user/userInfo.jsp").forward(request, response); break;
-				case "펫시터" : request.getRequestDispatcher("/views/petsitter/userInfo.jsp").forward(request, response); break;
-				case "관리자" : request.getRequestDispatcher("/views/admin/adminMypage.jsp").forward(request, response); break;
+				case "펫시터" : request.getRequestDispatcher("/views/petsitterMypage/petSitterInfo.jsp").forward(request, response); break;
+				case "관리자" : request.getRequestDispatcher("/admin/").forward(request, response); break;
 			}
 			
 		}

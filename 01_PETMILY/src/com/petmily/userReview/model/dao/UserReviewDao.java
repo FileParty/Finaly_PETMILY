@@ -72,4 +72,31 @@ public class UserReviewDao {
 		}
 		return list;
 	}
+	
+	
+//	[회원정보]-[작성후기]에서 작성글보기 로직
+	public boolean selectUserReviewDetail(Connection conn, String id, String pstId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean flag = false;
+		String sql = prop.getProperty("selectUserReviewDetail");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pstId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		} 
+		return flag;
+	}
 }

@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.petmily.admin.model.vo.ApplyUser" %>
 <%@ include file="/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminSideBar.css" type = "text/css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminPetSitterSupport.css" type = "text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminPetSitterSupport.css" type = "text/css">
 <% 
 	ArrayList<ApplyUser> list = new ArrayList();
 	if(request.getAttribute("userList")!=null){
@@ -15,6 +14,7 @@
 		type = (String)request.getAttribute("type");
 	}
 %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <section id="adminMainMenu">
 <%@ include file="/views/admin/adminSideBar.jsp" %>
 	<section id="adminUserList">
@@ -39,7 +39,7 @@
 					width="20px" height="20px"></p>
 		</div>
 		<div class="adminUserInfo">
-			<table>
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>No</th>

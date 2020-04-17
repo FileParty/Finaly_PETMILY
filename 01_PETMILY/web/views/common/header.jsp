@@ -5,7 +5,6 @@
 
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
-	System.out.println("header에 있는 session - loginUser 정보 : "+loginUser);
 %>
   
 <!DOCTYPE html>
@@ -20,6 +19,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- Bootstrap CSS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -32,11 +32,11 @@
     <div id="headerMenuBar">
     
         <img style="cursor: pointer;" src="<%=request.getContextPath()%>/img/common/logo.png" alt="로고이미지" width="35" height="53"
-        onclick="location.replace('<%=request.getContextPath()%>')"/>
+        onclick="location.replace('<%=request.getContextPath()%>/')"/>
         
 	        <ul id="headerDefault">
-	            <li><a href="<%=request.getContextPath()%>/">펫 시터 찾기</a></li>
-	            <li><a href="<%=request.getContextPath()%>/">펫 시터 지원</a></li>
+	            <li><a href="<%=request.getContextPath()%>/search">펫 시터 찾기</a></li>
+	            <li><a href="<%=request.getContextPath()%>/apply/joinChange">펫 시터 지원</a></li>
 	        </ul>
 	        
 	        <% if(loginUser==null){ %>
@@ -47,10 +47,10 @@
 	        <% } else { %>
 		        <ul id="headerlogin">
 		        	<li><a href="#"><img alt="유저" src="<%=request.getContextPath()%>/img/common/Profile.png" width="30px" height="30px"></a></li>
-		            <li><p><%=loginUser.getUserName()%>님(<%=loginUser.getUserType() %>)</p></li>
-		            <li><a href="<%=request.getContextPath()%>/log-out">로그아웃</a></li>
-		            <li><a href="<%=request.getContextPath()%>/userInfo?userId=<%=loginUser.getUserId()%>">마이페이지</a></li>
-		            <li><a href="#"><img alt="종소리" src="<%=request.getContextPath()%>/img/common/Bell.png" width="30px" height="30px"></a></li>
+		            <li><p><%=loginUser.getUserName()%>님 <br><span style="font-size: 15px;">(<%=loginUser.getUserType() %>)</span></p></li>
+		            <li><a style="margin-top:8px;" href="<%=request.getContextPath()%>/log-out">로그아웃</a></li>
+		            <li style="margin-top: 8px;"><a href="<%=request.getContextPath()%>/common/Info?userId=<%=loginUser.getUserId()%>">마이페이지</a></li>
+		            <li style="margin-top: 8px;"><a href="#"><img alt="종소리" src="<%=request.getContextPath()%>/img/common/Bell.png" width="30px" height="30px"></a></li>
 		        </ul>
 	        <% } %>
     </div>

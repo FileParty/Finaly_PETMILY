@@ -27,7 +27,7 @@ function review(){
 // Get the modal
 var reservation_modal = document.getElementById('reservation_modal');
 var bline_process_modal = document.getElementById('bline_process_modal');
-var bline_request_modal = document.getElementById('bline_request_modal');
+//var bline_request_modal = document.getElementById('bline_request_modal');
 var reservation_end_modal = document.getElementById('reservation_end_modal');
 
 // Get the button that opens the modal
@@ -51,6 +51,7 @@ reservation.onclick = function() {
 reservation_end.onclick = function() {
     reservation_end_modal.style.display = "block";
     $('body').css("overflow", "hidden");
+    
 }
 
 bline_process.onclick = function() {
@@ -74,10 +75,13 @@ bline_request_close.onclick = function() {
     $('body').css("overflow", "scroll");
 }
 
-reservation_end_close.onclick = function() {
+/*reservation_end_close.onclick = function() {
     reservation_end_modal.style.display = "none";
     $('body').css("overflow", "scroll");
-}
+    
+    location.replace("")
+    
+}*/
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -90,16 +94,17 @@ window.onclick = function(event) {
     } else if (event.target == bline_request_modal) {
         bline_request_modal.style.display = "none";
         $('body').css("overflow", "scroll");
-    } else if (event.target == reservation_end_modal) {
+    /*} 
+    else if (event.target == reservation_end_modal) {
         reservation_end_modal.style.display = "none";
-        $('body').css("overflow", "scroll");
+        $('body').css("overflow", "scroll");*/
     } else if (event.target == document.getElementsByClassName("close")[4]) { // main img modal / function 따로 만듦
         document.getElementById("img_modal").style.display = "none";
         $('body').css("overflow", "scroll");
     }
 }
 
-select_end.onclick = function(){
+/*select_end.onclick = function(){
     var select_end1 = document.getElementById("section_end1");
     var select_end2 = document.getElementById("section_end2");
 
@@ -117,7 +122,7 @@ select_end.onclick = function(){
     
     
 
-}
+}*/
 
 function resulvation_cancel(){
 
@@ -126,6 +131,10 @@ function resulvation_cancel(){
     if(result){
         reservation_end_modal.style.display = "none";
         $('body').css("overflow", "scroll");
+        
+        $('#section_end1').attr("style", "display:flex");
+        $('#section_end2').attr("style", "display:none");
+        
         
     }
 
@@ -213,4 +222,6 @@ function end_img(){
     }
     sub_img[sub_img.length-1].src = window["temp"+0];
 }
+
+
 

@@ -104,6 +104,9 @@
 			<% if(apList.size()>0){
 				for(AdminPetsitter ap : apList){ %>
 				<tr>
+					<th colspan="2"><h3>자격증</h3></th>
+				</tr>
+				<tr>
 					<th>자격증이름</th>
 					<td><%=ap.getCERTIFICATE_NAME()%></td>
 				</tr>
@@ -125,12 +128,12 @@
 					<th>자격증 만료일</th>
 					<td><%=ap.getEXPIRATION_DATE()!=null?ap.getEXPIRATION_DATE():"만료일자없음"%></td>
 				</tr>
-				<tr>
+				<tr class="photo">
 					<th>자격증 사진</th>
 					<td>
 						<%if(ap.getCERTIFICATE_FILENAME()!=null){ %>
 							<img alt="" src="<%=request.getContextPath()%>/upload/sitter/<%=ap.getCERTIFICATE_FILENAME()%>"
-								widht="200px" height="120px">
+								widht="100%" height="100%">
 						<% } else { %>
 							<p>사진이 없습니다.</p>
 						<% } %>
@@ -188,14 +191,24 @@
 		text-align:center;
 	}
 	table tr{
-		background-color:lightgray;
 		board:1px solid black;
 	}
+	table th{
+		background-color:lightgray;
+	}
+	table td{
+		background-color:white;
+	}
 	table th, table td{
-		board:1px solid white;
+		width:160px;
+		height:40px;
 	}
 	table td>textarea{
 		resize:none
+	}
+	tr.photo{
+		width:160px;
+		height:160px;
 	}
 </style>
 <script>

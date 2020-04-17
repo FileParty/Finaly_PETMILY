@@ -37,7 +37,6 @@ public class PetProfileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 			
 		HttpSession session = request.getSession();
-		String user = "user01";
 		
 //		if(session.getAttribute("loginUser")==null) {
 ////			잘못된 접근 처리

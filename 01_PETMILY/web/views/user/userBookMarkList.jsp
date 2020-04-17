@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="java.util.List,com.petmily.user.model.vo.UserBookMark,com.petmily.user.model.vo.User" %>
+<%@ page import="java.util.List,com.petmily.user.model.vo.UserBookMarkBoard,com.petmily.user.model.vo.User" %>
 <%
-	List<UserBookMark> list = (List)request.getAttribute("list");
-%>    
+	List<UserBookMarkBoard> list = (List)request.getAttribute("list");
+	for(UserBookMarkBoard ubmb : list) {
+		System.out.println("화면에 갖고오나?"+ubmb);
+	}
+%>     
     
 <%@ include file="/views/common/header.jsp" %>
 <style>
@@ -40,13 +43,13 @@
     .menu{
             width: 230px;
             /* border: 1px solid yellow; */
-            margin-top: 150px;
+            margin-top: 50px;
             height: 100%;
             
         }
     #menu{
         width: 230px;
-        position : fixed;
+        /* position : fixed; */
         height: 100%;
     }
     ul{
@@ -107,24 +110,28 @@
         color: grey;
         border-right: 1px solid white;
     }
-
+	a#detailViewBTN {
+	    color: gray;
+	}
+	a#detailViewBTN:hover {
+	    color: black;
+	}
 </style>
 
 
-<body>
     <section>
         <div class="container">
-            <form action="<%=request.getContextPath()%>/sitter/write?userId=sebin" method="post" onsubmit="return test();">
+            <form action="<%=request.getContextPath()%>" method="post" onsubmit="return test();">
             <div class="row">
             <div class="col-2 menu">
                     <div id="menu">
                         <ul type="none">
-                            <li class="title"><a href="<%=request.getContextPath()%>/userInfo">회원정보</a></li>
+                            <li class="title">회원정보</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userUpdate?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userDelete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userBookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/"> - 작성 후기</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Update?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Delete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/BookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Review?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
                             <br/>
         
                             <li class="title">펫 프로필</li>
@@ -156,7 +163,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">회원 정보</li>
-                    <li class="breadcrumb-item active">회원 탈퇴</li>
+                    <li class="breadcrumb-item active">북마크</li>
                 </ul>
                    <!-- 콘텐츠 영역 -->
                    <table id="enrollTB">
@@ -165,27 +172,36 @@
                         <th>no</th>
             			<th>제목</th>
             			<th>펫 시터 이름</th>
-                        <th>일박 케어 요금</th>
+                        <th>일박 케어 요금(소형)</th>
+                        <th>일박 케어 요금(중형)</th>
+                        <th>일박 케어 요금(대형)</th>
                         <th>게시글 링크</th>
                     </tr>
                     
-                    <% for(UserBookMark ubm : list) { %>
-	                    <tr>
-	                    	<!-- no -->
-							<td><%= ubm %></td>
-							<!-- 제목 -->
-							<td><%=  %></td>
-							<!-- 펫 시터 이름 --> 
-							<td><%=  %></td> 
-							<!-- 일박 케어 요금 -->
-							<td><%=  %></td> 
-							<!-- 게시글 링크 -->
-							<td><%=  %></td> 
-	                    </tr>
+                    <% for(UserBookMarkBoard ubmb : list) { %>
+	                 <tr>
+                    	<!-- no -->
+						<td><p style="text-align: center;"><%= ubmb.getBoardCode() %></p></td>
+						<!-- 제목 -->
+						<td><p style="text-align: center;"><%= ubmb.getBoardTitle() %></p></td>
+						<!-- 펫 시터 이름 --> 
+						<td><p style="text-align: center;"><%= ubmb.getUserName() %></p></td> 
+						<!-- 일박 케어 요금 s,m,b-->
+						<td><p style="text-align: center;"><%= ubmb.getOnedaySprice() %>원</p></td> <!-- s --> 
+						<td><p style="text-align: center;"><%= ubmb.getOnedayMprice() %>원</p></td> <!-- m -->
+						<td><p style="text-align: center;"><%= ubmb.getOnedayBprice() %>원</p></td> <!-- b -->
+						<!-- 게시글 링크 -->
+						<td><a id="detailViewBTN" href="javascript:void(0);" style="margin-left: 10px;"
+						onclick="location.replace('<%=request.getContextPath()%>/BoardList.do?userId=<%=loginUser.getUserId()%>&boardCode=<%=ubmb.getBoardCode()%>')">상세 내역 보기</a></td> 
+                    </tr>
 	                 <% } %>
     
                     
                 </table>
+                
+                <br><br><br>
+				
+				<div style="padding-left: 370px;"><%=request.getAttribute("pageBar") %></div>
 
                     </div>
                 </div>
@@ -193,6 +209,9 @@
         </form>
         </div>
     </section>
+    
+    
+    <br><br><br>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -200,13 +219,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-    
-    
-
-
-</script>
-</html>
+<%@ include file="/views/common/footer.jsp" %>

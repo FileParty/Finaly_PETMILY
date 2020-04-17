@@ -26,7 +26,7 @@ public class UserJoinEndServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String id = request.getParameter("user_id"); // 유저 아이디
+		String id = request.getParameter("user_Id"); // 유저 아이디
 		String password = request.getParameter("password"); // 유저 비밀번호
 		String name = request.getParameter("user_name"); // 유저 이름
 		String bday = request.getParameter("user_birth_day"); // 유저 생년월일		
@@ -37,11 +37,17 @@ public class UserJoinEndServlet extends HttpServlet {
 		String email = request.getParameter("email"); // 유저 이메일
 		String gender = request.getParameter("gender"); // 유저 성별
 		
+		System.out.println("회원가입 id :" + id);
+		System.out.println("회원가입 pw :" + password);
+		System.out.println("회원가입 bday :" + bday);
+		System.out.println("회원가입 phone :" + phone);
+		System.out.println("회원가입 post :" + post);
+		System.out.println("회원가입 address :" + address);
+		System.out.println("회원가입 detailedAddress :" + detailedAddress);
+		System.out.println("회원가입 email :" + email);
+		System.out.println("회원가입 gender :" + gender);
 		
-		User u = new User(id, password, name, bday, phone, post, address, detailedAddress, email, gender, null, null, null, null, null);
-		System.out.println("user :" + u);
-		
-		int result = new UserService().userJoin(u);
+		int result = new UserService().userJoin(id, password, name, bday, phone, post, address, detailedAddress, email, gender);
 		
 		
 //		응답페이지 작성

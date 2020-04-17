@@ -167,7 +167,7 @@ public class UserDao {
 	
 	
 	
-//	�븘�씠�뵒 以묐났�솗�씤 濡쒖쭅
+//	회원가입 - 사용자 아이디 중복확인 로직
 	public boolean userIdDuplicate(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -193,7 +193,7 @@ public class UserDao {
 	}
 	
 	
-//	�쑕��踰덊샇 以묐났�솗�씤 濡쒖쭅
+//	회원가입 - 휴대폰 번호 중복확인 로직
 	public boolean phoneDuplicate(Connection conn, String phone) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -219,7 +219,7 @@ public class UserDao {
 	}
 	
 	
-//	�씠硫붿씪 以묐났�솗�씤 濡쒖쭅
+//	회원가입 - 이메일 중복확인 로직
 	public boolean emailDuplicate(Connection conn, String email) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -246,22 +246,22 @@ public class UserDao {
 	
 	
 //	�쉶�썝媛��엯 濡쒖쭅
-	public int userJoin(Connection conn, User u) {
+	public int userJoin(Connection conn, String id, String password, String name, String bday, String phone, String post, String address, String detailedAddress, String email, String gender) {
 		PreparedStatement pstmt=null;
 		int result = 0;
 		String sql = prop.getProperty("userJoin");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, u.getUserId()); // �쑀�� �븘�씠�뵒
-			pstmt.setString(2, u.getPassword()); // �쑀�� 鍮꾨�踰덊샇
-			pstmt.setString(3, u.getUserName()); // �쑀�� �씠由�
-			pstmt.setString(4, u.getUserBirth()); // �쑀�� �깮�뀈�썡�씪
-			pstmt.setString(5, u.getPhone()); // �쑀�� �쑕���룿 踰덊샇
-			pstmt.setString(6, u.getZipCode()); // �쑀�� �슦�렪踰덊샇
-			pstmt.setString(7, u.getAddress()); // �쑀�� 二쇱냼
-			pstmt.setString(8, u.getDetailAddress()); // �쑀�� �긽�꽭二쇱냼
-			pstmt.setString(9, u.getEmail()); // �쑀�� �씠硫붿씪
-			pstmt.setString(10, u.getGender()); // �쑀�� �꽦蹂�
+			pstmt.setString(1, id); 
+			pstmt.setString(2, password); 
+			pstmt.setString(3, name);
+			pstmt.setString(4, bday); 
+			pstmt.setString(5, phone); 
+			pstmt.setString(6, post);
+			pstmt.setString(7, address);
+			pstmt.setString(8, detailedAddress);
+			pstmt.setString(9, email);
+			pstmt.setString(10, gender); 
 			result=pstmt.executeUpdate();			
 			
 		}catch(SQLException e) {
@@ -380,11 +380,10 @@ public class UserDao {
 				ubm.setBoardCode(rs.getInt("BCODE"));
 				ubm.setPetSitterId(rs.getString("PSI"));
 				ubm.setBoardTitle(rs.getString("BT"));
-				ubm.setOnedaySprice(rs.getInt("BS"));
-				ubm.setOnedayMprice(rs.getInt("BM"));
-				ubm.setOnedayBprice(rs.getInt("BB"));
+				ubm.setOnedaySprice(rs.getInt("OS"));
+				ubm.setOnedayMprice(rs.getInt("OM"));
+				ubm.setOnedayBprice(rs.getInt("OB"));
 				ubm.setUserName(rs.getString("NA"));
-				ubm.setRnum(rs.getInt("RNUM"));
 				list.add(ubm);
 			}
 			
@@ -422,5 +421,43 @@ public class UserDao {
 			close(pstmt);
 		}
 		return count;
+	}
+
+
+	public User userApiLogin(Connection conn, String userEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		User user = null;
+		String sql = prop.getProperty("apiUserSelect");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userEmail);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user = new User();
+				user.setUserId(rs.getString("USER_ID")); // �쑀�� �븘�씠�뵒
+				user.setPassword(rs.getString("PASSWORD")); // �쑀�� �뙣�뒪�썙�뱶
+				user.setUserName(rs.getString("USER_NAME")); // �쑀�� �씠由�
+				user.setUserBirth(rs.getString("USER_BIRTH_DAY")); // �쑀�� �깮�뀈�썡�씪
+				user.setPhone(rs.getString("PHONE")); // �쑀�� �쑕��踰덊샇
+				user.setZipCode(rs.getString("ZIP_CODE")); // �쑀�� �슦�렪踰덊샇
+				user.setAddress(rs.getString("ADDRESS")); // �쑀�� 二쇱냼
+				user.setDetailAddress(rs.getString("DETAILED_ADDRESS")); // �쑀�� �긽�꽭二쇱냼
+				user.setEmail(rs.getString("EMAIL")); // �쑀�� �씠硫붿씪
+				user.setGender(rs.getString("GENDER")); // �쑀�� �꽦蹂�
+				user.setStatus(rs.getString("STATUS")); // �쑀�� �쉶�썝�깉�눜�뿬遺�
+				user.setUserType(rs.getString("USER_TYPE")); // �쑀�� ���엯(�씪諛�, �렖�떆�꽣, 愿�由ъ옄)
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return user;
 	}
 }

@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.petmily.admin.model.vo.AdminQuestion" %>
 <%@ include file="/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminSideBar.css" type = "text/css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminQuestion.css" type = "text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminQuestion.css" type = "text/css">
 <% 
-	ArrayList<AdminQuestion> list = new ArrayList();
+	ArrayList<AdminQuestion> aqList = new ArrayList();
 	if(request.getAttribute("questionList")!=null){
-		list = (ArrayList<AdminQuestion>)request.getAttribute("questionList");
+		aqList = (ArrayList<AdminQuestion>)request.getAttribute("questionList");
 	}
 	String type="ANSWER_DATE";
 	if(request.getAttribute("type")!=null){
@@ -39,11 +38,11 @@
 					 width="20px" height="20px"></p>
 		</div>
 		<div class="adminUserInfo">
-			<table>
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>No</th>
-						<th>메일 제목</th>
+						<th>문의사항</th>
 						<th>답장 받을 이메일</th>
 						<th>답변 유무</th>
 						<th>메일 회신</th>
@@ -51,15 +50,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for(AdminQuestion aq : list){ %>
+					<% for(AdminQuestion aq : aqList){ %>
 					<tr>
 						<td><%=qCount++%></td>
-						<td><%=aq.getEmailTitle() %></td>
+						<td><% if(aq.getEmailTitle().length()<10){ %>
+								<%=aq.getEmailTitle() %>
+							<% } else { %>
+								<%=aq.getEmailTitle().substring(0,11) + "..." %>
+							<% } %>
+						</td>
 						<td><%=aq.getSendEmail() %></td>
 						<td><%=aq.getQueYN() %></td>
-						<td><button onclick="sendQuestion('<%=aq.getSendEmail()%>')">회신</button></td>
+						<td><button class="Abtns" onclick="sendQuestion('<%=aq.getSendEmail()%>')">회신</button></td>
 						<td><%=aq.getEmailDate().substring(0,11) %></td>
-						<td><button class="userInfo" onclick="showUserData()">보기</button></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -74,18 +77,19 @@
 	$(function(){
 		// 신청일순 이벤트
 		$("#type-date").click(e=>{
-				location.replace('<%=request.getContextPath()%>/admin/user_list?type=BCOUNT%20DESC');
+				location.replace('<%=request.getContextPath()%>/admin/question?type=ANSWER_DATE');
 		})
 		// 답변순 이벤트
 		$("#type-yn").click(e=>{
-			location.replace('<%=request.getContextPath()%>/admin/user_list?type=STAR');
+			location.replace('<%=request.getContextPath()%>/admin/question?type=ANSWER_YN');
 		})
 		
 	})
 	
 	function sendQuestion(){
-		let email = $(event.target).parent().parent().find("td:nth-of-type(2)").text();
-		console.log(email);
+		let content = $(event.target).parent().parent().find("td:nth-of-type(2)").text();
+		let email = $(event.target).parent().parent().find("td:nth-of-type(3)").text();
+		console.log(content, email);
 		<%-- window.open("<%=request.getContextPath()%>/admin/normalUserData?userId="+userId,"_blank","width=725px; height=500px"); --%>
 	}
 </script>

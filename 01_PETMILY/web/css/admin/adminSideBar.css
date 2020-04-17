@@ -1,0 +1,51 @@
+@charset "UTF-8";
+section#adminMainMenu{
+	display:flex;
+	flex-direction:row;
+	width:1366px;
+}
+
+aside#sideBar{
+	display:flex;
+	flex-direction:column;
+	width:250px;
+	height:920px;
+	margin-left:15px;
+	padding-top:60px;
+	border-right:1px solid black;
+}
+
+div.side{
+	display:flex;
+	flex-direction:column;
+	margin-bottom:15px;
+	font-size: 14px;
+    margin-bottom: 6px;
+}
+
+div.side>h2{
+	margin:5px;
+}
+
+div.side>hr{
+	margin:5px;
+}
+
+div.side>a{
+	color:black;
+	margin-top:6px;
+	text-decoration:none;
+}
+
+div.side>a:hover{
+	color:blue;
+}
+
+hr{
+    margin-left: 0;
+    width: 10%;
+    height: 2px;
+    color: #ffcc33;
+    background-color: #ffcc33;
+    border: none;
+}

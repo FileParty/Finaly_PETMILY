@@ -4,7 +4,7 @@
 
 
 	<!-- 내가 적용한 CSS : 회원가입 -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/joinForm.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/yskCss/joinForm.css">
 	<!-- 내가 적용한 jQuery -->
 	<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
 	<!-- Daum 우편번호 서비스 API  -->
@@ -12,6 +12,7 @@
 	<!-- 폰트 -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
+<%@ include file="/views/common/header.jsp" %>
 
 <!-- 회원가입 영역 -->
 <section>
@@ -569,3 +570,4 @@
 	
 </script>
 
+<%@ include file="/views/common/footer.jsp" %>

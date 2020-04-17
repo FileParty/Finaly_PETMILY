@@ -23,5 +23,14 @@ public class UserReviewService {
 		return list;
 		
 	}
+	
+	
+//	[회원정보]-[작성후기]에서 작성글보기 로직
+	public boolean selectUserReviewDetail(String id, String pstId) {
+		Connection conn = getConnection();
+		boolean flag = dao.selectUserReviewDetail(conn, id, pstId);
+		close(conn);
+		return flag;
+	}
 
 }

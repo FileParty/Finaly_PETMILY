@@ -43,12 +43,12 @@
     .menu{
             width: 230px;
             /* border: 1px solid yellow; */
-            margin-top: 150px;
+            margin-top: 50px;
 
         }
     #menu{
         width: 230px;
-        position : fixed;
+        /* position : fixed; */
     }
     ul{
         padding-inline-start:0;
@@ -110,13 +110,11 @@
  }
 
 </style>
-</head>
-<body>
 
 <!-- 회원탈퇴 화면 -->
     <section>
         <div class="container">
-            <form action="<%=request.getContextPath()%>/userDeleteEnd" method="post" onsubmit="return test();">
+            <form action="<%=request.getContextPath()%>/user/DeleteEnd" method="post" onsubmit="return test();">
             
             <!-- form을 넘기기 위해 hidden 처리한 input을 만듦. -->
             <input type="hidden" id="userId" name="userId" value="<%= u.getUserId() %>" >
@@ -125,12 +123,12 @@
             <div class="col-2 menu">
                     <div id="menu">
                         <ul type="none">
-                            <li class="title"><a href="<%=request.getContextPath()%>/userInfo">회원정보</a></li>
+                            <li class="title">회원정보</li>
                             <hr class="hr-line"/>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userUpdate?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userDelete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userBookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
-                            <li class="content"><a href="<%=request.getContextPath()%>/userReview?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Update?userId=<%=loginUser.getUserId()%>"> - 회원정보 수정</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Delete?userId=<%=loginUser.getUserId()%>"> - 회원 탈퇴</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/BookMarkList?userId=<%=loginUser.getUserId()%>"> - 북마크</a></li>
+                            <li class="content"><a href="<%=request.getContextPath()%>/user/Review?userId=<%=loginUser.getUserId()%>"> - 작성 후기</a></li>
                             <br/>
         
                             <li class="title">펫 프로필</li>
@@ -188,20 +186,15 @@
         </form>
         </div>
     </section>
+    
+    <br><br><br><br>
 
     <!-- Optional JavaScript -->
     <!— jQuery first, then Popper.js, then Bootstrap JS —>
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
 
-    
-    
-
-
-</script>
-</html>
+<%@ include file="/views/common/footer.jsp" %>

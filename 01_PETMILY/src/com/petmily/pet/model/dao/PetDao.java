@@ -118,9 +118,9 @@ public List<Pet> petprofile(Connection conn, String user) {
 			p.setHospitalPhone(rs.getString("animal_hospital_phone"));
 			p.setHospitalZip(rs.getString("animal_hospital_zip_code"));
 			p.setHospitalAddress(rs.getString("animal_hospital_address"));
-			p.setPetImg(rs.getString("ah_detailed_address"));
-			p.setRegistration(rs.getString("pet_img_filename"));
-			p.setDetail(rs.getString("pet_registration_values"));
+			p.setPetImg(rs.getString("pet_img_filename"));
+			p.setRegistration(rs.getString("pet_registration_values"));
+			p.setDetail(rs.getString("ah_detailed_address"));
 			
 			list.add(p);
 		}
@@ -172,9 +172,9 @@ public Pet petProfileDetail (Connection conn, String user, int no) {
 			p.setHospitalPhone(rs.getString("animal_hospital_phone"));
 			p.setHospitalZip(rs.getString("animal_hospital_zip_code"));
 			p.setHospitalAddress(rs.getString("animal_hospital_address"));
-			p.setPetImg(rs.getString("ah_detailed_address"));
-			p.setRegistration(rs.getString("pet_img_filename"));
-			p.setDetail(rs.getString("pet_registration_values"));
+			p.setPetImg(rs.getString("pet_img_filename"));
+			p.setRegistration(rs.getString("pet_registration_values"));
+			p.setDetail(rs.getString("ah_detailed_address"));
 			
 			
 			
@@ -184,7 +184,8 @@ public Pet petProfileDetail (Connection conn, String user, int no) {
 	}finally {
 		close(rs);
 		close(pstmt);
-	}return p;
+	}
+	return p;
 }
 
 public int petprofileeidt(Connection conn,Pet pet,String id,int no) {
@@ -219,9 +220,9 @@ public int petprofileeidt(Connection conn,Pet pet,String id,int no) {
 		pstmt.setString(23, pet.getHospitalPhone());
 		pstmt.setString(24, pet.getHospitalZip());
 		pstmt.setString(25, pet.getHospitalAddress());
-		pstmt.setString(26, pet.getPetImg());
-		pstmt.setString(27, pet.getRegistration());
-		pstmt.setString(28, pet.getDetail());
+		pstmt.setString(26, pet.getDetail());
+		pstmt.setString(27, pet.getPetImg());
+		pstmt.setString(28, pet.getRegistration());
 		pstmt.setString(29, id);
 		pstmt.setInt(30, no);
 		

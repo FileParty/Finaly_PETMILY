@@ -15,7 +15,7 @@ import com.petmily.userReview.service.UserReviewService;
 /**
  * Servlet implementation class UserReview
  */
-@WebServlet("/userReview")
+@WebServlet("/user/Review")
 public class UserReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class UserReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userId=request.getParameter("userId");
-		
+		userId = "user10";
 		List<UserReview> list=new UserReviewService().selectUserReviewList(userId);
 		//System.out.println(list.size());
 		//System.out.println(userId);

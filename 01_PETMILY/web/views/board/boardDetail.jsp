@@ -64,13 +64,15 @@
                             <td colspan="1">
                                 <div class="input-group mb-3" style="width: 500px; height: 25px; margin-top: 10px;">
                                     <div class="files">
-                                    	<%for(int i=0;i<pb.getBoardImages().size();i++) { %>
-                                    	<%if(pb.getBoardImages()!=null) {%>
-                                       <img style="letter-spacing:5px;width:50px;height:50px;"src="<%=request.getContextPath() %>/upload/board/<%=pb.getBoardImages().get(i)%>">
+                                    <%if(pb.getBoardImages()!=null) {%>
+                                    	<%for(int i=0;i<pb.getBoardImages().size();i++) { %>                                  	
+                                       <img style="letter-spacing:5px;width:50px;height:50px;"src="<%=request.getContextPath() %>/upload/board/<%=pb.getBoardImages().get(i)%>">   
+                                       <%} %>                                 	
+                                     	
                                      	<%}else { %>
                                      	<p>등록 된 이미지가 없습니다.</p>
                                      	<%} %>
-                                       <%} %>
+                                       
                                     </div>
                                     <div class="selectFile">
                                      <input type="hidden"class="fileNo" name="count">
@@ -153,7 +155,7 @@
                                     <div class="chiller_cb">
                                     
                                         <%if(plus.contains("추가할인")==true){ %>
-                                        <input onclick="toggle1();"  name="plusOption" class="chkbox" id="myCheckbox2" type="checkbox" value="추가할인" checked disabled>
+                                        <input onclick="toggle1();"  class="myCheckbox2" name="plusOption" class="chkbox" id="myCheckbox2" type="checkbox" value="추가할인" checked disabled>
                                         <label class="lab" for="myCheckbox2">반려동물 추가비 할인 </label>
                                         <span></span>
                                         <button type="button" class="btn btn-secondary" data-container="body"
@@ -162,7 +164,7 @@
                                             ?
                                           </button>
                                           <%} else {%>
-                                            <input onclick="toggle1();"  name="plusOption" class="chkbox" id="myCheckbox2" type="checkbox" value="추가할인" disabled>
+                                            <input onclick="toggle1();"name="plusOption" class="chkbox" id="myCheckbox2" type="checkbox" value="추가할인" disabled>
                                         <label class="lab" for="myCheckbox2">반려동물 추가비 할인 </label>
                                         <span></span>
                                         <button type="button" class="btn btn-secondary" data-container="body"
@@ -311,11 +313,11 @@
                             <td>
                                 <div class="chiller_cb">
                                 <%if(plus.contains("목욕가능")==true) {%>
-                                    <input name="plusOption"id="myCheckbox6" type="checkbox" value="목욕가능" checked disabled>
+                                    <input class="myCheckbox6" name="plusOption"id="myCheckbox6" type="checkbox" value="목욕가능" checked disabled>
                                     <label for="myCheckbox6">목욕 가능</label>
                                     <span></span>
                                     <%}else {  %>
-                                    <input name="plusOption"id="myCheckbox6"  type="checkbox" value="목욕가능" disabled>
+                                    <input class="myCheckbox6" name="plusOption"id="myCheckbox6"  type="checkbox" value="목욕가능" disabled>
                                     <label for="myCheckbox6">목욕 가능</label>
                                     <span></span>
                                     <%} %>
@@ -324,7 +326,7 @@
                         </tr>
                     </table><!-- 추가 옵션 -->
 
-                    <div class="row2"style="margin-right:20px;">
+                    <div id="row2" class="row2"style="margin-right:20px;">
                         <div class="in-table d-flex justify-content-center">
                             <table id="inner" style="width: 300px; margin-left: 60px;" >
                                 <tr>
@@ -390,7 +392,7 @@
                         </tr>
                     </table><!-- 추가 옵션 -->
 
-                    <div class="row3">
+                    <div id="row3" class="row3">
                         <div class="in-table d-flex justify-content-center">
                             <table id="inner" style="width: 300px; margin-left: 60px;" >
                                 <tr>
@@ -444,16 +446,14 @@
 
     $(function () {
    $('[data-toggle="tooltip"]').tooltip();
-
 })
 
 
 
   
-        
+/*         
            
             var search= $(".address").val();
-            console.log(search);
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                mapOption = {
                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -495,35 +495,36 @@
            function mapOff(draggable,zoomable) {
            		  map.setDraggable(draggable);  
            		  map.setZoomable(zoomable); 
-           }
-          
-              var chk2 = document.getElementById("myCheckbox2");
-            var chk6 = document.getElementById("myCheckbox6");
-            var chk8 = document.getElementById("myCheckbox8");
+           } */
+           var chk1 = document.getElementById("myCheckbox2");
+            var chk2 = document.getElementById("myCheckbox6");
+            var chk3 = document.getElementById("myCheckbox8");
+         
             
             
-            var row1 = $(".row1");
-            var row2 = $(".row2");
-            var row3 = $(".row3");
-            if(chk2.checked!=true) {
-               row1.hide();
+            
+        
+           
+            if(chk1.checked!=true) {
+            	$("#row1").hide();
                }else {
-                  row1.show();
+            	   $("#row1").show();
                }
-               
-           if(chk6.checked!=true) {
-           row2.hide();
-           }else { 
-              row2.show();
-           }
-           if(chk8.checked!=true) {
-               row3.hide();
-               }else { 
-                  row3.show();
+            if(chk2.checked!=true) {
+            	$("#row2").hide();
+               }else {
+            	   $("#row2").show();
                }
+            if(chk3.checked!=true) {
+            	$("#row3").hide();
+               }else {
+            	   $("#row3").show();
+               }
+
+          
            
      
-         
+           
            
   
     

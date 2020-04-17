@@ -54,9 +54,9 @@ public class ReservationService {
 		  return list;
 	  }
 	  
-	  public PetReservation requestDetail(String id) {
+	  public PetReservation requestDetail(String id,int code) {
 		  Connection conn = getConnection();
-		  PetReservation pr = dao.requestDetail(conn,id);
+		  PetReservation pr = dao.requestDetail(conn,id,code);
 		  close(conn);
 		  return pr;
 	  }

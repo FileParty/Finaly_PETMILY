@@ -144,7 +144,7 @@
 							
 							<td style="width:600px;"><%=pr.getBoardTitle() %></td>
 							
-							<td><input style="border-radius:20px;font-size:13px;"class="btn btn-outline-secondary" style="width:100px;"onclick="requestCheck()" type="button" id="request" value="상세 요청 확인"></td>
+							<td><input style="border-radius:20px;font-size:13px;"class="btn btn-outline-secondary" style="width:100px;"onclick="requestCheck('<%=pr.getReservationCode() %>')" type="button" id="request" value="상세 요청 확인"></td>
 							<td><%=pr.getResType() %></td> 
 							
 							<td><%=pr.getPrice() %></td> 
@@ -186,12 +186,12 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
-function requestCheck() {
+function requestCheck(code) {
 
 	var popupX = (window.screen.width / 2) - (400 / 2);
 	var popupY= (window.screen.height /2) - (450 / 2);
 	
-	window.open('<%=request.getContextPath()%>/user/requestDetail','_blank','height=450,width=400,left='+popupX+',top='+popupY+',screenX='+popupX+',screenY='+popupY);
+	window.open('<%=request.getContextPath()%>/user/requestDetail?code='+code,'_blank','height=450,width=400,left='+popupX+',top='+popupY+',screenX='+popupX+',screenY='+popupY);
 }
 
 $("#btn").click(function(){//위

@@ -20,7 +20,7 @@ import com.petmily.user.model.vo.User;
 /**
  * Servlet implementation class SitterUpdateEndServlet
  */
-@WebServlet("/sitter/updateEnd")
+@WebServlet("/sitter/updateEndd")
 public class SitterUpdateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -28,12 +28,8 @@ PetReservation pr = (PetReservation)request.getAttribute("rev");
 				<td><%=pr.getUserId() %></td>
 			</tr>
 			<tr>
-				<th>예약자 ID</th>
-				<td><%=pr.getUserId() %></td>
-			</tr>
-			<tr>
 				<th>체크 인</th>
-				<td><%=pr.getUserId() %></td>
+				<td><%=pr.getCheckIn().substring(0,11)%></td>
 			</tr>
 			<tr>
 				<th>체크 아웃</th>

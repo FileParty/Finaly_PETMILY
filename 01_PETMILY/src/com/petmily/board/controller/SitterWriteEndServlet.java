@@ -106,23 +106,23 @@ public class SitterWriteEndServlet extends HttpServlet {
 			defaultO.add(d);
 		}
 		
-		
-		
+			PetSitterBoard pb = new PetSitterBoard(0,userId,title,intro,small,middle,big,address,comment,"N","Y",small1,middle1,big1,oneWay,allWay,sale,list,defaultO,plusO);
 	
 		
-	PetSitterBoard pb = new PetSitterBoard(0,userId,title,intro,small,middle,big,address,comment,"N","Y",small1,middle1,big1,oneWay,allWay,sale,list,defaultO,plusO);
-	
-		
-		int result = new BoardService2().boardInsert(pb);
+			int result = new BoardService2().boardInsert(pb);
 		String msg = "";
 		String loc = "";
 		if(result>0) {
 		msg="게시글 등록 성공하였습니다.";
-		request.getRequestDispatcher("/views/petsitterMypage/petSitterInfo.jsp").forward(request, response);
+		loc="/views/petsitterMypage/petSitterInfo.jsp";
+		
 		}else {
 			msg="게시글 등록을 실패 하였습니다.";
 			loc="/views/common/msg.jsp";
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 
 		
 	}

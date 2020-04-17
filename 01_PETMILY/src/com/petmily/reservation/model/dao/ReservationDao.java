@@ -172,7 +172,7 @@ public class ReservationDao {
 		return p;
 	}
 	
-	public PetReservation requestDetail(Connection conn,String id) {
+	public PetReservation requestDetail(Connection conn,String id,int code) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		PetReservation pr = null;
@@ -181,6 +181,7 @@ public class ReservationDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setInt(2, code);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {

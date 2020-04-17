@@ -52,7 +52,7 @@
 <body>
     <section>
         <div class="container">
-            <form action="<%=request.getContextPath() %>/sitter/updateEnd?id=<%=pb.getUserId() %>&no=<%=pb.getBoardNo()%>"  method="post" onsubmit="return test();" enctype="multipart/form-data">
+            <form action="<%=request.getContextPath() %>/sitter/updateEndd?id=<%=pb.getUserId() %>&no=<%=pb.getBoardNo()%>"  method="post" onsubmit="return test();" enctype="multipart/form-data">
             <div class="row">
             	<%@ include file="/views/petsitterMypage/petSitterSideBar.jsp" %>
             <div class="vl"></div>
